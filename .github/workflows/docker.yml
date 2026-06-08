@@ -21,10 +21,10 @@ jobs:
       - name: Descargar Código
         uses: actions/checkout@v4
 
-      # 🛠️ Este paso convierte todo el nombre del repositorio a minúsculas para evitar el error de Docker
+      # 🛠️ Creamos la variable REPO_LOWERCASE en MAYÚSCULAS para que no falle el entorno
       - name: Formatear repositorio a minusculas
         run: |
-          echo "REPO_LOWERCASE=${{ github.repository_owner }}/${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+          echo "REPO_LOWERCASE=$(echo "${{ github.repository_owner }}/${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Login GHCR
         uses: docker/login-action@v3
