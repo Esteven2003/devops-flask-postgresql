@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -15,17 +15,15 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: steven@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: stev123
+      PGADMIN_DEFAULT_EMAIL: admin@correo.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
     ports:
       - "8080:80"
     depends_on:
       - db
 
   app:
-    
-    build: .
-    image: ghcr.io/Esteven2003/devops-flask:2.0.0
+    image: ghcr.io/usuario/devops-flask-postgres:2.0.0
     container_name: flaskapp
     ports:
       - "5000:5000"
